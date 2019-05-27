@@ -1,0 +1,114 @@
+[
+  {
+    "item_name": "Blind Rage",
+    "item_img": "https://warframe.market/static/assets/icons/en/thumbs/Blind_Rage.a3969916d438992c1b132d3c56ded7a5.128x128.png",
+    "buy": {
+      "max_value": [
+        200
+      ],
+      "min_value_buy": [
+        5
+      ],
+      "avg_value_buy": [
+        125.0
+      ],
+      "length_of_array": 5
+    },
+    "sell": {
+      "max_value": [
+        25
+      ],
+      "min_value_buy": [
+        20
+      ],
+      "avg_value_buy": [
+        23.0
+      ],
+      "length_of_array": 10
+    }
+  },
+  {
+    "item_name": "Primed Flow",
+    "item_img": "https://warframe.market/static/assets/icons/en/thumbs/Primed_Flow.f65c5889e6d464ceea67c6c0aae9faa0.128x128.png",
+    "buy": {
+      "max_value": [
+        180
+      ],
+      "min_value_buy": [
+        15
+      ],
+      "avg_value_buy": [
+        71.0
+      ],
+      "length_of_array": 10
+    },
+    "sell": {
+      "max_value": [
+        45
+      ],
+      "min_value_buy": [
+        35
+      ],
+      "avg_value_buy": [
+        40.7
+      ],
+      "length_of_array": 10
+    }
+  },
+  {
+    "item_name": "Loki Prime Set",
+    "item_img": "https://warframe.market/static/assets/icons/en/thumbs/Loki_Prime_Set.abc05c280f92196bcb688643873fbf95.128x128.png",
+    "buy": {
+      "max_value": [
+        120
+      ],
+      "min_value_buy": [
+        30
+      ],
+      "avg_value_buy": [
+        83.0
+      ],
+      "length_of_array": 10
+    },
+    "sell": {
+      "max_value": [
+        250
+      ],
+      "min_value_buy": [
+        200
+      ],
+      "avg_value_buy": [
+        228.0
+      ],
+      "length_of_array": 10
+    }
+  },
+  {
+    "item_name": "Loki Prime Blueprint",
+    "item_img": "https://warframe.market/static/assets/sub_icons/blueprint_128x128.png",
+    "buy": {
+      "max_value": [
+        5
+      ],
+      "min_value_buy": [
+        2
+      ],
+      "avg_value_buy": [
+        3.5
+      ],
+      "length_of_array": 2
+    },
+    "sell": {
+      "max_value": [
+        14
+      ],
+      "min_value_buy": [
+        10
+      ],
+      "avg_value_buy": [
+        10.9
+      ],
+      "length_of_array": 10
+    }
+  }
+]
