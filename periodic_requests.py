@@ -5,7 +5,7 @@ from twisted.internet import reactor
 
 
 def send_requests():
-    requests.post("https://agile-scrubland-59074.herokuapp.com/schedule.json", data={
+    requests.post("https://frozen-ridge-16339.herokuapp.com/schedule.json", data={
         'project': 'default',
         'spider': 'statistics'
     })
