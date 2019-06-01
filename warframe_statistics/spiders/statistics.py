@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 import scrapy
 import json
-import pprint
-
-printer = pprint.PrettyPrinter()
 
 
 class StatisticsSpider(scrapy.Spider):
