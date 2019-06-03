@@ -13,7 +13,7 @@ def send_request():
 if __name__ == '__main__':
     scheduler = TwistedScheduler(timezone=pytz.utc)
     scheduler.add_job(send_request, 'interval',
-                      minutes=30)
+                      minutes=30, start_date='2019-06-03 20:00:00')
 
     scheduler.start()
     reactor.run()
@@ -22,7 +22,7 @@ if __name__ == '__main__':
 
 # if __name__ == '__main__':
 #     scheduler = TwistedScheduler(timezone=pytz.utc)
-#     scheduler.add_job(send_request, 'interval', hours=1, start_date='2019-06-02 09:45:00')
+#     scheduler.add_job(send_request, 'interval', hours=1, start_date='2019-06-02 20:00:00')
 #     scheduler.start()
 #     reactor.run()
 
