@@ -12,7 +12,7 @@ def send_request():
 
 if __name__ == '__main__':
     scheduler = TwistedScheduler(timezone=pytz.utc)
-    scheduler.add_job(send_request, 'cron', day_of_week='mon-sun', hours='*', start_date='2019-06-05 18:00:00', jitter=120)  # 09.57   utf
+    scheduler.add_job(send_request, 'cron', day_of_week='mon-sun', hour='*', start_date='2019-06-05 19:00:00', jitter=120)  # 09.57   utf
 
     scheduler.start()
     reactor.run()
