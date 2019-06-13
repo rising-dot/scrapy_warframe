@@ -120,12 +120,6 @@ class StatisticsSpider(scrapy.Spider):
         avg_buy_value = sum(take_ten_of_buy) / len(take_ten_of_buy)
         length_of_buy = len(take_ten_of_buy)
 
-        # print(item_name)
-        # print(max_value_buy)
-        # print(min_value_buy)
-        # print(avg_value_buy)
-        # print(length_of_array)
-
         yield {
             "item_name": item_name,
             "item_set_name": item_set_name,
