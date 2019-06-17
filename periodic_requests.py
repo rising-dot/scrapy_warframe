@@ -12,7 +12,7 @@ def send_request():
 
 if __name__ == '__main__':
     scheduler = TwistedScheduler(timezone=pytz.utc)
-    scheduler.add_job(send_request, 'interval', minutes=20, start_date='2019-06-16 09:30:00', jitter=120)
+    scheduler.add_job(send_request, 'interval', minutes=59, start_date='2019-06-17 16:00:00', jitter=120)  # active before 30 min
 
     scheduler.start()
     reactor.run()
