@@ -90,8 +90,10 @@ AUTOTHROTTLE_ENABLED = True
 # HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
 
-# MONGO_URI = 'mongodb://rising:magicitem7@mongodb-2815-0.cloudclusters.net:10009/warframe_database?authSource=admin'
-# MONGO_DB = 'warframe_database'
+#MONGO_URI = 'mongodb://rising:magicitem7@mongodb-2815-0.cloudclusters.net:10009/warframe_database?authSource=admin'
+
+#MONGO_URI = 'mongodb://localhost:27017'
+#MONGO_DB = 'warframe_database'
 
 MONGO_DB = 'heroku_xn7s2274'
 MONGO_URI = 'mongodb://sornsama:sornsama7@ds231307.mlab.com:31307/heroku_xn7s2274'

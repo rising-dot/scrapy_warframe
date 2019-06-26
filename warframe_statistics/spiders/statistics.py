@@ -2,6 +2,9 @@
 import scrapy
 import json
 
+import datetime
+
+
 
 class StatisticsSpider(scrapy.Spider):
     name = 'statistics'
@@ -14,7 +17,8 @@ class StatisticsSpider(scrapy.Spider):
     def parse(self, response):
         script = response.xpath('//script[@id="application-state"]/text()').extract_first()
         json_response = json.loads(script)
-        get_url_names = json_response.get('items').get('en')
+        get_url_names = json_response.get('items')
+
 
 
 
@@ -101,7 +105,7 @@ class StatisticsSpider(scrapy.Spider):
 
         max_sell_value = max(sell[0:10])
         min_sell_value = min(sell[0:10])
-        avg_sell_value = sum(take_ten_of_sell) / len(take_ten_of_sell)
+        avg_sell_value = round(sum(take_ten_of_sell) / len(take_ten_of_sell), 2)
         length_of_sell = len(take_ten_of_sell)
         #######################################################################################################################
         # Buy
@@ -117,13 +121,19 @@ class StatisticsSpider(scrapy.Spider):
 
         max_buy_value = max(buy[0:10])
         min_buy_value = min(buy[0:10])
-        avg_buy_value = sum(take_ten_of_buy) / len(take_ten_of_buy)
+        avg_buy_value = round(sum(take_ten_of_buy) / len(take_ten_of_buy), 2)
         length_of_buy = len(take_ten_of_buy)
+
+
+        date = datetime.datetime.now()
+        time = date.strftime("%x")
+        date_now = datetime.datetime.strptime(time, "%m/%d/%y")
 
         yield {
             "item_name": item_name,
             "item_set_name": item_set_name,
             "item_img": item_img,
+            "date": date_now,
             "buy": {
                 "max_value": [max_buy_value],
                 "min_value": [min_buy_value],

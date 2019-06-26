@@ -12,7 +12,7 @@ def send_request():
 
 if __name__ == '__main__':
     scheduler = TwistedScheduler(timezone=pytz.utc)
-    scheduler.add_job(send_request, 'interval', minutes=59, start_date='2019-06-19 00:00:00', jitter=120)  # active before 30 min
+    scheduler.add_job(send_request, 'interval', minutes=18, start_date='2019-06-26 20:00:00', jitter=120)
 
     scheduler.start()
     reactor.run()
@@ -35,7 +35,7 @@ if __name__ == '__main__':
 #minutes
 
 
-# 'interval', minutes=59, start_date='2019-06-18 12:00:00', jitter=120)  # active before 30 min
+# 'interval', minutes=59, start_date='2019-06-18 12:00:00', jitter=120)  # active before 30 min  run only once
 
 
 
