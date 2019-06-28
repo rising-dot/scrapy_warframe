@@ -33,16 +33,14 @@ class WarframeStatisticsPipeline(object):
         self.client.close()
 
     def process_item(self, item, spider):
-        # if self.db[self.collection].count_documents({"item_name": item.get("item_name")}) == 1:
 
         if self.db[self.collection].count_documents({"item_name": item.get("item_name")}) == 1:
 
             # check for new_day
             date = datetime.datetime.now()
-            time_now = date.strftime("%x")
-            new_day = datetime.datetime.strptime(time_now, "%m/%d/%y")
+            new_day = str(date.year)+"-"+str(date.month)+"-"+str(date.day)
             # check for new_day
-            # check for new_day
+
 
             if new_day > item.get("date"):
                 # new day -- need to clear date to the new list
