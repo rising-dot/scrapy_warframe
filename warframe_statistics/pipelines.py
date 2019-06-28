@@ -77,7 +77,7 @@ class WarframeStatisticsPipeline(object):
                         }
                     )
 
-                # reset the array --- delete all in array
+                # update the date  
                 self.db[self.collection].update_one(
                     {"item_name": item.get("item_name")},
                     {"$set":
