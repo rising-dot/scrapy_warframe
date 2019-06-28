@@ -33,14 +33,15 @@ class WarframeStatisticsPipeline(object):
         self.client.close()
 
     def process_item(self, item, spider):
+        # if self.db[self.collection].count_documents({"item_name": item.get("item_name")}) == 1:
 
         if self.db[self.collection].count_documents({"item_name": item.get("item_name")}) == 1:
-
 
             # check for new_day
             date = datetime.datetime.now()
             time_now = date.strftime("%x")
             new_day = datetime.datetime.strptime(time_now, "%m/%d/%y")
+            # check for new_day
             # check for new_day
 
             if new_day > item.get("date"):
@@ -55,8 +56,7 @@ class WarframeStatisticsPipeline(object):
                     avg_value = sum(item.get(text).get("avg_value")) / len(item.get(text).get("avg_value"))
                     accuracy_value = round((sum(item.get(text).get("accuracy_value")) / 240) * 100, 2)
 
-
-                    #create the new vaule for the day
+                    # create the new vaule for the day
                     statistics_data[text] = {
                         "max_value": max_value,
                         "min_value": min_value,
@@ -64,37 +64,46 @@ class WarframeStatisticsPipeline(object):
                         "accuracy_value": accuracy_value
                     }
 
-                    #reset the array --- delete all in array
+                    # reset the array --- delete all in array
                     self.db[self.collection].update_one(
                         {"item_name": item.get("item_name")},
-                        { "$set":
+                        {"$set":
                             {
-                                text+".max_value": [],
-                                text+".min_value": [],
-                                text+".avg_value": [],
-                                text+".accuracy_value": [],
-                                "date": new_day
+                                text + ".max_value": [],
+                                text + ".min_value": [],
+                                text + ".avg_value": [],
+                                text + ".accuracy_value": []
+
 
                             }
                         }
                     )
 
+                # reset the array --- delete all in array
+                self.db[self.collection].update_one(
+                    {"item_name": item.get("item_name")},
+                    {"$set":
+                        {
+                            "date": new_day
+                        }
+                    }
+                )
 
-                #now insert it into the statistics_list
+                # now insert it into the statistics_list
                 today_datetime = datetime.date.today()
                 self.db[self.collection].update_one(
                     {"item_name": item.get("item_name")},
                     {
                         "$push": {
                             "statistics_list": {
-                                    "datetime" : str(today_datetime),
-                                    "data": statistics_data
+                                "datetime": str(today_datetime),
+                                "data": statistics_data
                             }
                         }
                     }
                 )
 
-                #how many days do we want ?
+                # how many days do we want ?
                 self.db[self.collection].update_one(
                     {"statistics_list.120": {"$exists": 1}},
                     {"$pop": {"statistics_list": -1}}
@@ -105,7 +114,7 @@ class WarframeStatisticsPipeline(object):
 
 
             else:
-                #same day -- just insert data
+                # same day -- just insert data
 
                 self.db[self.collection].update_one(
                     {"item_name": item.get("item_name")},
