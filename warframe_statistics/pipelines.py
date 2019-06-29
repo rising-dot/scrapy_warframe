@@ -9,6 +9,11 @@
 from pymongo import MongoClient
 import datetime
 
+# check for new_day
+date = datetime.datetime.now()
+new_day = str(date)
+# check for new_day
+
 
 # this code is for local database
 class WarframeStatisticsPipeline(object):
@@ -35,12 +40,6 @@ class WarframeStatisticsPipeline(object):
     def process_item(self, item, spider):
 
         if self.db[self.collection].count_documents({"item_name": item.get("item_name")}) == 1:
-
-            # check for new_day
-            date = datetime.datetime.now()
-            new_day = str(date.year)+"-"+str(date.month)+"-"+str(date.day)
-            # check for new_day
-
 
             if new_day > item.get("date"):
                 # new day -- need to clear date to the new list
@@ -80,13 +79,13 @@ class WarframeStatisticsPipeline(object):
 
 
                 # now insert it into the statistics_list
-                today_datetime = datetime.date.today()
+
                 self.db[self.collection].update_one(
                     {"item_name": item.get("item_name")},
                     {
                         "$push": {
                             "statistics_list": {
-                                "datetime": str(today_datetime),
+                                "datetime": new_day,
                                 "data": statistics_data
                             }
                         }
