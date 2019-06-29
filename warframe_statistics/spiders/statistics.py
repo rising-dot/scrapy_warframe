@@ -157,8 +157,9 @@ class StatisticsSpider(scrapy.Spider):
 
 #######################################################################################################################
 
-        date = datetime.date.today()
-        date_now = str(date)
+        date = datetime.datetime.now()
+        date_now = str(date.day)+"/"+str(date.month)+"/"+str(date.year)
+
 
         yield {
             "item_name": item_name,

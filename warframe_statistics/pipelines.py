@@ -42,12 +42,12 @@ class WarframeStatisticsPipeline(object):
         if self.db[self.collection].count_documents({"item_name": item.get("item_name")}) == 1:
 
             # check for new_day
-            date = datetime.date.today()
-            new_day = str(date)
+            date = datetime.datetime.now()
+            new_day = str(date.day)+"/"+str(date.month)+"/"+str(date.year)
             # check for new_day
-            print(new_day)
 
-            if new_day > item.get("date"):
+
+            if new_day.date() > item.get("date").date():
                 # new day -- need to clear date to the new list
 
                 sell_buy = ["buy", "sell"]
@@ -72,16 +72,16 @@ class WarframeStatisticsPipeline(object):
                         {"item_name": item.get("item_name")},
                         {"$set":
                             {
+                                "date": new_day,
                                 text + ".max_value": [],
                                 text + ".min_value": [],
                                 text + ".avg_value": [],
-                                text + ".accuracy_value": [],
-                                "date": new_day
-
-
+                                text + ".accuracy_value": []
                             }
                         }
                     )
+
+
 
 
                 # now insert it into the statistics_list
