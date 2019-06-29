@@ -70,22 +70,14 @@ class WarframeStatisticsPipeline(object):
                                 text + ".max_value": [],
                                 text + ".min_value": [],
                                 text + ".avg_value": [],
-                                text + ".accuracy_value": []
+                                text + ".accuracy_value": [],
+                                "date": new_day
 
 
                             }
                         }
                     )
 
-                # update the date  
-                self.db[self.collection].update_one(
-                    {"item_name": item.get("item_name")},
-                    {"$set":
-                        {
-                            "date": new_day
-                        }
-                    }
-                )
 
                 # now insert it into the statistics_list
                 today_datetime = datetime.date.today()
