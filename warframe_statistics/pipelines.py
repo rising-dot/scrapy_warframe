@@ -5,14 +5,9 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
-
 from pymongo import MongoClient
 import datetime
 
-date = datetime.datetime.now()
-new_day = str(date)
-            # check for new_day
-print(new_day)
 
 
 # this code is for local database
@@ -41,13 +36,17 @@ class WarframeStatisticsPipeline(object):
 
         if self.db[self.collection].count_documents({"item_name": item.get("item_name")}) == 1:
 
-            # check for new_day
-            date = datetime.datetime.now()
-            new_day = str(date.day)+"/"+str(date.month)+"/"+str(date.year)
-            # check for new_day
+            #check for new_day
+            today = datetime.datetime.now()
+
+            # date in yyyy/mm/dd format
+            present = datetime.datetime(today.year, today.month, today.day)
+
+            datebase_date = item.get("date")
+            past = datetime.datetime(int(datebase_date.strftime("%Y")), int(datebase_date.strftime("%m")), int(datebase_date.strftime("%d")))
 
 
-            if new_day.date() > item.get("date").date():
+            if present > past:
                 # new day -- need to clear date to the new list
 
                 sell_buy = ["buy", "sell"]
@@ -72,7 +71,7 @@ class WarframeStatisticsPipeline(object):
                         {"item_name": item.get("item_name")},
                         {"$set":
                             {
-                                "date": new_day,
+                                "date": today,
                                 text + ".max_value": [],
                                 text + ".min_value": [],
                                 text + ".avg_value": [],
