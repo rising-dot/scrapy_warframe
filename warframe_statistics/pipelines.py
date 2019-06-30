@@ -40,15 +40,14 @@ class WarframeStatisticsPipeline(object):
             today = datetime.datetime.now()
 
             # date in yyyy/mm/dd format
-            present = datetime.datetime(today.year, today.month, today.day)
+            date_now = str(today.year)+str(today.month)+str(today.day)
+            present_to_int = int(date_now)
 
             datebase_date = item.get("date")
-            past = datetime.datetime(int(datebase_date.strftime("%Y")), int(datebase_date.strftime("%m")), int(datebase_date.strftime("%d")))
 
 
-            if present > past:
+            if present_to_int > datebase_date:
                 # new day -- need to clear date to the new list
-
                 sell_buy = ["buy", "sell"]
 
                 statistics_data = {}
@@ -71,7 +70,7 @@ class WarframeStatisticsPipeline(object):
                         {"item_name": item.get("item_name")},
                         {"$set":
                             {
-                                "date": today,
+                                "date": present_to_int,
                                 text + ".max_value": [],
                                 text + ".min_value": [],
                                 text + ".avg_value": [],
@@ -90,7 +89,7 @@ class WarframeStatisticsPipeline(object):
                     {
                         "$push": {
                             "statistics_list": {
-                                "datetime": new_day,
+                                "datetime": today,
                                 "data": statistics_data
                             }
                         }
@@ -109,7 +108,6 @@ class WarframeStatisticsPipeline(object):
 
             else:
                 # same day -- just insert data
-
                 self.db[self.collection].update_one(
                     {"item_name": item.get("item_name")},
                     {

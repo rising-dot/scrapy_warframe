@@ -158,14 +158,16 @@ class StatisticsSpider(scrapy.Spider):
 #######################################################################################################################
 
         #check for new_day
-        date_now = datetime.datetime.now()
+        #date_now = datetime.datetime.now()
 
-
+        date = datetime.datetime.now()
+        date_now = str(date.year)+str(date.month)+str(date.day)
+        date_to_int = int(date_now)
         yield {
             "item_name": item_name,
             "item_set_name": item_set_name,
             "item_img": item_img,
-            "date": date_now,
+            "date": date_to_int,
             "buy": {
                 "max_value": [max_buy_value],
                 "min_value": [min_buy_value],
