@@ -6,8 +6,7 @@
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
 from pymongo import MongoClient
-import datetime
-
+from datetime import datetime
 
 
 # this code is for local database
@@ -36,18 +35,16 @@ class WarframeStatisticsPipeline(object):
 
         if self.db[self.collection].count_documents({"item_name": item.get("item_name")}) == 1:
 
-            #check for new_day
-            today = datetime.datetime.now()
-
-            # date in yyyy/mm/dd format
-            date_now = str(today.year)+str(today.month)+str(today.day)
-            present_to_int = int(date_now)
-
+            # check for the date
+            date = datetime.now()
+            present_to_int = int(date.strftime('%Y%m%d'))
+            # get date frfom database
             datebase_date = item.get("date")
 
 
             if present_to_int > datebase_date:
                 # new day -- need to clear date to the new list
+
                 sell_buy = ["buy", "sell"]
 
                 statistics_data = {}
@@ -79,9 +76,6 @@ class WarframeStatisticsPipeline(object):
                         }
                     )
 
-
-
-
                 # now insert it into the statistics_list
 
                 self.db[self.collection].update_one(
@@ -89,7 +83,7 @@ class WarframeStatisticsPipeline(object):
                     {
                         "$push": {
                             "statistics_list": {
-                                "datetime": today,
+                                "datetime": date,
                                 "data": statistics_data
                             }
                         }
@@ -108,6 +102,7 @@ class WarframeStatisticsPipeline(object):
 
             else:
                 # same day -- just insert data
+                print("just insert data*****************************************************************")
                 self.db[self.collection].update_one(
                     {"item_name": item.get("item_name")},
                     {

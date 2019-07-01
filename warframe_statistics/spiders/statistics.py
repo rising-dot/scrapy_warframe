@@ -2,7 +2,7 @@
 import scrapy
 import json
 
-import datetime
+from datetime import datetime
 
 
 
@@ -156,13 +156,10 @@ class StatisticsSpider(scrapy.Spider):
 
 
 #######################################################################################################################
+        #save the date as INT
+        date = datetime.now()
+        date_to_int = int(date.strftime('%Y%m%d'))
 
-        #check for new_day
-        #date_now = datetime.datetime.now()
-
-        date = datetime.datetime.now()
-        date_now = str(date.year)+str(date.month)+str(date.day)
-        date_to_int = int(date_now)
         yield {
             "item_name": item_name,
             "item_set_name": item_set_name,
