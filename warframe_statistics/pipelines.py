@@ -33,13 +33,14 @@ class WarframeStatisticsPipeline(object):
 
     def process_item(self, item, spider):
 
-        if self.db[self.collection].count_documents({"item_name": item.get("item_name")}) == 1:
+        for data in self.db[self.collection].find({"item_name": item.get("item_name")}):
+        #if self.db[self.collection].count_documents({"item_name": item.get("item_name")}) == 1:
 
             # check for the date
             date = datetime.now()
             present_to_int = int(date.strftime('%Y%m%d'))
             # get date frfom database
-            datebase_date = item.get("date")
+            datebase_date = data.get("date")
 
 
             # print("present_to_int")
