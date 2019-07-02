@@ -33,30 +33,23 @@ class WarframeStatisticsPipeline(object):
 
     def process_item(self, item, spider):
 
-        for data in self.db[self.collection].find({"item_name": item.get("item_name")}):
-        #if self.db[self.collection].count_documents({"item_name": item.get("item_name")}) == 1:
+        if self.db[self.collection].count_documents({"item_name": item.get("item_name")}) == 1:
 
-            # check for the date
+            # get date from database
+            datebase_date = ""
+            for get_date in self.db[self.collection].find({"item_name": item.get("item_name")}):
+                datebase_date = get_date.get("date")
+
+            # today date
             date = datetime.now()
             present_to_int = int(date.strftime('%Y%m%d'))
-            # get date frfom database
-            datebase_date = data.get("date")
 
-
-            # print("present_to_int")
-            # print(type(present_to_int))
-            # print(present_to_int)
-            #
-            # print("datebase_date")
-            # print(type(datebase_date))
-            # print(datebase_date)
 
 
             if present_to_int > datebase_date:
                 # new day -- need to clear date to the new list
-                #print("we got in****************************************")
-                sell_buy = ["buy", "sell"]
 
+                sell_buy = ["buy", "sell"]
                 statistics_data = {}
                 for text in sell_buy:
                     max_value = max(item.get(text).get("max_value"))
@@ -87,7 +80,6 @@ class WarframeStatisticsPipeline(object):
                     )
 
                 # now insert it into the statistics_list
-
                 self.db[self.collection].update_one(
                     {"item_name": item.get("item_name")},
                     {
@@ -107,12 +99,8 @@ class WarframeStatisticsPipeline(object):
                 )
 
 
-
-
-
             else:
                 # same day -- just insert data
-                #print("just insert data*****************************************************************")
                 self.db[self.collection].update_one(
                     {"item_name": item.get("item_name")},
                     {
@@ -128,11 +116,6 @@ class WarframeStatisticsPipeline(object):
                         }
                     }
                 )
-
-
-
-
-
 
         else:
             self.db[self.collection].insert_one(dict(item))
