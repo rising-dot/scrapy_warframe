@@ -42,9 +42,18 @@ class WarframeStatisticsPipeline(object):
             datebase_date = item.get("date")
 
 
+            # print("present_to_int")
+            # print(type(present_to_int))
+            # print(present_to_int)
+            #
+            # print("datebase_date")
+            # print(type(datebase_date))
+            # print(datebase_date)
+
+
             if present_to_int > datebase_date:
                 # new day -- need to clear date to the new list
-
+                #print("we got in****************************************")
                 sell_buy = ["buy", "sell"]
 
                 statistics_data = {}
@@ -102,7 +111,7 @@ class WarframeStatisticsPipeline(object):
 
             else:
                 # same day -- just insert data
-                print("just insert data*****************************************************************")
+                #print("just insert data*****************************************************************")
                 self.db[self.collection].update_one(
                     {"item_name": item.get("item_name")},
                     {
