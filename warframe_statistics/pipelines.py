@@ -99,6 +99,23 @@ class WarframeStatisticsPipeline(object):
                 )
 
 
+                # same day -- just insert data
+                self.db[self.collection].update_one(
+                    {"item_name": item.get("item_name")},
+                    {
+                        "$push": {
+                            "buy.max_value": item.get("buy").get("max_value")[0],
+                            "buy.min_value": item.get("buy").get("min_value")[0],
+                            "buy.avg_value": item.get("buy").get("avg_value")[0],
+                            "buy.accuracy_value": item.get("buy").get("accuracy_value")[0],
+                            "sell.max_value": item.get("sell").get("max_value")[0],
+                            "sell.min_value": item.get("sell").get("min_value")[0],
+                            "sell.avg_value": item.get("sell").get("avg_value")[0],
+                            "sell.accuracy_value": item.get("sell").get("accuracy_value")[0]
+                        }
+                    }
+                )
+
             else:
                 # same day -- just insert data
                 self.db[self.collection].update_one(
