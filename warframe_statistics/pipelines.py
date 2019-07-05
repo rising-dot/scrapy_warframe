@@ -85,7 +85,7 @@ class WarframeStatisticsPipeline(object):
                     {
                         "$push": {
                             "statistics_list": {
-                                "datetime": date,
+                                "datetime": date.date(),
                                 "data": statistics_data
                             }
                         }
