@@ -44,10 +44,8 @@ class WarframeStatisticsPipeline(object):
             date = datetime.now()
             present_to_int = int(date.strftime('%Y%m%d'))
 
-            #       20200807
 
-
-            if 20200807 > datebase_date:
+            if present_to_int > datebase_date:
                 # new day -- need to clear date to the new list
 
                 sell_buy = ["buy", "sell"]
