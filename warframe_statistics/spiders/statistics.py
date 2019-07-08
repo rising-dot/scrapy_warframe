@@ -107,10 +107,10 @@ class StatisticsSpider(scrapy.Spider):
             sell.sort()
             take_ten_of_sell = sell[0:10]
 
-            max_sell_value = max(sell[0:10])
-            min_sell_value = min(sell[0:10])
-            avg_sell_value = round(sum(take_ten_of_sell) / len(take_ten_of_sell), 2)
-            length_of_sell = len(take_ten_of_sell)
+            max_sell_value = max(sell[0:10])   # find the max value of the 10 numbers
+            min_sell_value = min(sell[0:10])   # find the min value of the 10 numbers
+            avg_sell_value = round(sum(take_ten_of_sell) / len(take_ten_of_sell), 2) # calculate the average
+            length_of_sell = len(take_ten_of_sell)  # do we have 10 numbers or lower ?
         else:
             # List is empty
             max_sell_value = 0

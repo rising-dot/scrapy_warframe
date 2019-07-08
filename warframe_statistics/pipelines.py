@@ -54,8 +54,8 @@ class WarframeStatisticsPipeline(object):
                 for text in sell_buy:
                     max_value = max(item.get(text).get("max_value"))
                     min_value = min(item.get(text).get("min_value"))
-                    avg_value = sum(item.get(text).get("avg_value")) / len(item.get(text).get("avg_value"))
-                    accuracy_value = round((sum(item.get(text).get("accuracy_value")) / 240) * 100, 2)
+                    avg_value = sum(item.get(text).get("avg_value")) / len(item.get(text).get("avg_value")) #calculate the average of average
+                    accuracy_value = str(round((sum(item.get(text).get("accuracy_value")) / 480) * 100, 2))+"%"
 
                     # create the new vaule for the day
                     statistics_data[text] = {
