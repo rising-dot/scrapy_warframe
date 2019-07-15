@@ -26,45 +26,43 @@ class StatisticsSpider(scrapy.Spider):
         urls = []
 
 ##############################################################################################################
-        # for link in get_url_names:
-        # for link in get_url_names:
-        #     if "Prime Chassis" in link.get("item_name") or \
-        #             "Prime Blueprint" in link.get("item_name") or \
-        #             "Prime Systems" in link.get("item_name") or \
-        #             "Prime Neuroptics" in link.get("item_name") or \
-        #             "Prime Grip" in link.get("item_name") or \
-        #             "Prime Lower Limb" in link.get("item_name") or \
-        #             "Prime String" in link.get("item_name") or \
-        #             "Prime Upper Limb" in link.get("item_name") or \
-        #             "Prime Barrel" in link.get("item_name") or \
-        #             "Prime Receiver" in link.get("item_name") or \
-        #             "Prime Stock" in link.get("item_name") or \
-        #             "Prime Ornament" in link.get("item_name") or \
-        #             "Prime Handle" in link.get("item_name") or \
-        #             "Prime Blade" in link.get("item_name") or \
-        #             "Prime Head" in link.get("item_name") or \
-        #             "Prime Link" in link.get("item_name") or \
-        #             "Prime Pouch" in link.get("item_name") or \
-        #             "Prime Stars" in link.get("item_name") or \
-        #             "Prime Hilt" in link.get("item_name") or \
-        #             "Prime Wings" in link.get("item_name") or \
-        #             "Prime Cerebrum" in link.get("item_name") or \
-        #             "Prime Carapace" in link.get("item_name") or \
-        #             "Prime Harness" in link.get("item_name") or \
-        #             "Kubrow Imprint" in link.get("item_name") or \
-        #             "Prime Set" in link.get("item_name"):
-        #         urls.append('https://warframe.market/items/' + link.get('url_name'))
-        #
-        #
-        # #special prime item to add
-        # urls.append('https://warframe.market/items/wolf_sledge_handle')
-        # urls.append('https://warframe.market/items/wolf_sledge_blueprint')
-        # urls.append('https://warframe.market/items/wolf_sledge_head')
-        # urls.append('https://warframe.market/items/wolf_sledge_motor')
 
-        urls.append('https://warframe.market/items/akjagara_prime_receiver')
-        urls.append('https://warframe.market/items/mesa_prime_chassis')
-        urls.append('https://warframe.market/items/redeemer_prime_set')
+        for link in get_url_names:
+            if "Prime Chassis" in link.get("item_name") or \
+                    "Prime Blueprint" in link.get("item_name") or \
+                    "Prime Systems" in link.get("item_name") or \
+                    "Prime Neuroptics" in link.get("item_name") or \
+                    "Prime Grip" in link.get("item_name") or \
+                    "Prime Lower Limb" in link.get("item_name") or \
+                    "Prime String" in link.get("item_name") or \
+                    "Prime Upper Limb" in link.get("item_name") or \
+                    "Prime Barrel" in link.get("item_name") or \
+                    "Prime Receiver" in link.get("item_name") or \
+                    "Prime Stock" in link.get("item_name") or \
+                    "Prime Ornament" in link.get("item_name") or \
+                    "Prime Handle" in link.get("item_name") or \
+                    "Prime Blade" in link.get("item_name") or \
+                    "Prime Head" in link.get("item_name") or \
+                    "Prime Link" in link.get("item_name") or \
+                    "Prime Pouch" in link.get("item_name") or \
+                    "Prime Stars" in link.get("item_name") or \
+                    "Prime Hilt" in link.get("item_name") or \
+                    "Prime Wings" in link.get("item_name") or \
+                    "Prime Cerebrum" in link.get("item_name") or \
+                    "Prime Carapace" in link.get("item_name") or \
+                    "Prime Harness" in link.get("item_name") or \
+                    "Kubrow Imprint" in link.get("item_name") or \
+                    "Prime Set" in link.get("item_name"):
+                urls.append('https://warframe.market/items/' + link.get('url_name'))
+
+
+        #special prime item to add
+        urls.append('https://warframe.market/items/wolf_sledge_handle')
+        urls.append('https://warframe.market/items/wolf_sledge_blueprint')
+        urls.append('https://warframe.market/items/wolf_sledge_head')
+        urls.append('https://warframe.market/items/wolf_sledge_motor')
+
+
 
 ##############################################################################################################
 
