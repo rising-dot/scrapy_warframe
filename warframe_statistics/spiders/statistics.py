@@ -111,7 +111,7 @@ class StatisticsSpider(scrapy.Spider):
 
             max_sell_value = max(sell[0:10])   # find the max value of the 10 numbers
             min_sell_value = min(sell[0:10])   # find the min value of the 10 numbers
-            avg_sell_value = round(sum(take_ten_of_sell) / len(take_ten_of_sell), 2) # calculate the average
+            avg_sell_value = round(sum(take_ten_of_sell) / len(take_ten_of_sell), 2) # calculate the average of platinum
             length_of_sell = len(take_ten_of_sell)  # do we have 10 numbers or lower ?
         else:
             # List is empty
@@ -141,7 +141,7 @@ class StatisticsSpider(scrapy.Spider):
 
             max_buy_value = max(buy[0:10])
             min_buy_value = min(buy[0:10])
-            avg_buy_value = round(sum(take_ten_of_buy) / len(take_ten_of_buy), 2)
+            avg_buy_value = round(sum(take_ten_of_buy) / len(take_ten_of_buy), 2)  # calculate the average of platinum
             length_of_buy = len(take_ten_of_buy)
 
         else:
@@ -175,7 +175,19 @@ class StatisticsSpider(scrapy.Spider):
                 "avg_value": [avg_sell_value],
                 "accuracy_value": [length_of_sell]
             },
-            "statistics_list": []
+            "statistics_list": [],
+            "buy_yesterday": {
+                "max_value": "",
+                "min_value": "",
+                "avg_value": "",
+                "accuracy_value": ""
+            },
+            "sell_yesterday": {
+                "max_value": "",
+                "min_value": "",
+                "avg_value": "",
+                "accuracy_value": ""
+            }
 
         }
 #######################################################################################################################

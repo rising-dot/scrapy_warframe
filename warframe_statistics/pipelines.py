@@ -51,6 +51,25 @@ class WarframeStatisticsPipeline(object):
                 sell_buy = ["buy", "sell"]
                 statistics_data = {}
                 for text in sell_buy:
+
+                    # insert it to yesterday first
+                    self.db[self.collection].update_one(
+                        {"item_name": item.get("item_name")},
+                        {"$set":
+                            {
+
+                                text + "_yesterday.max_value": item.get(text).get("max_value"),
+                                text + "_yesterday.min_value": item.get(text).get("min_value"),
+                                text + "_yesterday.avg_value": item.get(text).get("avg_value"),
+                                text + "_yesterday.accuracy_value": item.get(text).get("accuracy_value")
+                            }
+                        }
+                    )
+
+
+
+
+
                     max_value = max(item.get(text).get("max_value"))
                     min_value = min(item.get(text).get("min_value"))
                     avg_value = sum(item.get(text).get("avg_value")) / len(item.get(text).get("avg_value")) #calculate the average of average
@@ -63,6 +82,7 @@ class WarframeStatisticsPipeline(object):
                         "avg_value": avg_value,
                         "accuracy_value": accuracy_value
                     }
+
 
                     # reset the array --- delete all in array
                     self.db[self.collection].update_one(
