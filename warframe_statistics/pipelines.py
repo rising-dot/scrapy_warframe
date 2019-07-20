@@ -48,27 +48,33 @@ class WarframeStatisticsPipeline(object):
             if present_to_int > datebase_date:
                 # new day -- need to clear date to the new list
 
-                sell_buy = ["buy", "sell"]
-                statistics_data = {}
-                for text in sell_buy:
+                # insert it to yesterday first
+                for get_yes in self.db[self.collection].find({"item_name": item.get("item_name")}):
 
-                    # insert it to yesterday first
                     self.db[self.collection].update_one(
                         {"item_name": item.get("item_name")},
                         {"$set":
                             {
 
-                                text + "_yesterday.max_value": item.get(text).get("max_value"),
-                                text + "_yesterday.min_value": item.get(text).get("min_value"),
-                                text + "_yesterday.avg_value": item.get(text).get("avg_value"),
-                                text + "_yesterday.accuracy_value": item.get(text).get("accuracy_value")
+                                "buy_yesterday.max_value": get_yes.get("buy_yesterday").get("max_value"),
+                                "buy_yesterday.min_value": get_yes.get("buy_yesterday").get("min_value"),
+                                "buy_yesterday.avg_value": get_yes.get("buy_yesterday").get("avg_value"),
+                                "buy_yesterday.accuracy_value": get_yes.get("buy_yesterday").get("accuracy_value"),
+
+                                "sell_yesterday.max_value": get_yes.get("buy_yesterday").get("max_value"),
+                                "sell_yesterday.min_value": get_yes.get("buy_yesterday").get("min_value"),
+                                "sell_yesterday.avg_value": get_yes.get("buy_yesterday").get("avg_value"),
+                                "sell_yesterday.accuracy_value": get_yes.get("buy_yesterday").get("accuracy_value"),
+
                             }
                         }
                     )
 
+######################################################################################################################################
 
-
-
+                sell_buy = ["buy", "sell"]
+                statistics_data = {}
+                for text in sell_buy:
 
                     max_value = max(item.get(text).get("max_value"))
                     min_value = min(item.get(text).get("min_value"))
