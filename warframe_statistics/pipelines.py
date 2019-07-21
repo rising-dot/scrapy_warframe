@@ -60,11 +60,10 @@ class WarframeStatisticsPipeline(object):
                                 "buy_yesterday.min_value": get_yes.get("buy_yesterday").get("min_value"),
                                 "buy_yesterday.avg_value": get_yes.get("buy_yesterday").get("avg_value"),
                                 "buy_yesterday.accuracy_value": get_yes.get("buy_yesterday").get("accuracy_value"),
-
-                                "sell_yesterday.max_value": get_yes.get("buy_yesterday").get("max_value"),
-                                "sell_yesterday.min_value": get_yes.get("buy_yesterday").get("min_value"),
-                                "sell_yesterday.avg_value": get_yes.get("buy_yesterday").get("avg_value"),
-                                "sell_yesterday.accuracy_value": get_yes.get("buy_yesterday").get("accuracy_value"),
+                                "sell_yesterday.max_value": get_yes.get("sell_yesterday").get("max_value"),
+                                "sell_yesterday.min_value": get_yes.get("sell_yesterday").get("min_value"),
+                                "sell_yesterday.avg_value": get_yes.get("sell_yesterday").get("avg_value"),
+                                "sell_yesterday.accuracy_value": get_yes.get("sell_yesterday").get("accuracy_value")
 
                             }
                         }
