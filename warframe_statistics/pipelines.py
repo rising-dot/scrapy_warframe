@@ -56,14 +56,14 @@ class WarframeStatisticsPipeline(object):
                         {"$set":
                             {
 
-                                "buy_yesterday.max_value": get_yes.get("buy_yesterday").get("max_value"),
-                                "buy_yesterday.min_value": get_yes.get("buy_yesterday").get("min_value"),
-                                "buy_yesterday.avg_value": get_yes.get("buy_yesterday").get("avg_value"),
-                                "buy_yesterday.accuracy_value": get_yes.get("buy_yesterday").get("accuracy_value"),
-                                "sell_yesterday.max_value": get_yes.get("sell_yesterday").get("max_value"),
-                                "sell_yesterday.min_value": get_yes.get("sell_yesterday").get("min_value"),
-                                "sell_yesterday.avg_value": get_yes.get("sell_yesterday").get("avg_value"),
-                                "sell_yesterday.accuracy_value": get_yes.get("sell_yesterday").get("accuracy_value")
+                                "buy_yesterday.max_value": get_yes.get("buy").get("max_value"),
+                                "buy_yesterday.min_value": get_yes.get("buy").get("min_value"),
+                                "buy_yesterday.avg_value": get_yes.get("buy").get("avg_value"),
+                                "buy_yesterday.accuracy_value": get_yes.get("buy").get("accuracy_value"),
+                                "sell_yesterday.max_value": get_yes.get("sell").get("max_value"),
+                                "sell_yesterday.min_value": get_yes.get("sell").get("min_value"),
+                                "sell_yesterday.avg_value": get_yes.get("sell").get("avg_value"),
+                                "sell_yesterday.accuracy_value": get_yes.get("sell").get("accuracy_value")
 
                             }
                         }
