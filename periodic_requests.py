@@ -18,6 +18,5 @@ if __name__ == '__main__':
     reactor.run()
 
 
-# scheduler.add_job(send_request, 'interval', minutes=27, start_date='2019-07-07 10:30:00', jitter=120)  # active before 30min
 
 
