@@ -78,7 +78,10 @@ class WarframeStatisticsPipeline(object):
                     max_value = max(item.get(text).get("max_value"))
                     min_value = min(item.get(text).get("min_value"))
                     avg_value = sum(item.get(text).get("avg_value")) / len(item.get(text).get("avg_value")) #calculate the average of average
-                    accuracy_value = str(round((sum(item.get(text).get("accuracy_value")) / 480) * 100, 2))+"%"
+
+                    accuracy_sum = sum(item.get(text).get("accuracy_value"))
+                    accuracy_cal = round(((accuracy_sum / 480) * 100), 2)
+                    accuracy_value = str(accuracy_cal)+"%"
 
                     # create the new vaule for the day
                     statistics_data[text] = {
