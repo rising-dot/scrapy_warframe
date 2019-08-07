@@ -45,7 +45,7 @@ class WarframeStatisticsPipeline(object):
             present_to_int = int(date.strftime('%Y%m%d'))
 
             # if this is a new day then do this
-            if 20200708 > datebase_date:     #    present_to_int
+            if present_to_int > datebase_date:
                 # new day -- need to clear date to the new list
 
                 # copy all the data to yesterday first
