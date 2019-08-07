@@ -44,11 +44,11 @@ class WarframeStatisticsPipeline(object):
             date = datetime.now()
             present_to_int = int(date.strftime('%Y%m%d'))
 
-
-            if present_to_int > datebase_date:
+            # if this is a new day then do this
+            if 20200708 > datebase_date:     #    present_to_int
                 # new day -- need to clear date to the new list
 
-                # insert it to yesterday first
+                # copy all the data to yesterday first
                 for get_yes in self.db[self.collection].find({"item_name": item.get("item_name")}):
 
                     self.db[self.collection].update_one(
@@ -69,19 +69,27 @@ class WarframeStatisticsPipeline(object):
                         }
                     )
 
+
+
+
+
 ######################################################################################################################################
 
-                sell_buy = ["buy", "sell"]
-                statistics_data = {}
-                for text in sell_buy:
 
-                    max_value = max(item.get(text).get("max_value"))
-                    min_value = min(item.get(text).get("min_value"))
-                    avg_value = sum(item.get(text).get("avg_value")) / len(item.get(text).get("avg_value")) #calculate the average of average
 
-                    accuracy_sum = sum(item.get(text).get("accuracy_value"))
-                    accuracy_cal = round(((accuracy_sum / 480) * 100), 2)
-                    accuracy_value = str(accuracy_cal)+"%"
+                    # get the higest and lowest of yesterday
+
+                    sell_buy = ["buy", "sell"]
+                    statistics_data = {}
+                    for text in sell_buy:
+
+                        max_value = max(get_yes.get(text).get("max_value"))
+                        min_value = min(get_yes.get(text).get("min_value"))
+                        avg_value = sum(get_yes.get(text).get("avg_value")) / len(item.get(text).get("avg_value")) #calculate the average of average
+
+                        accuracy_value = str(round(((sum(get_yes.get(text).get("accuracy_value")) / 480) * 100), 2)) + "%"
+
+
 
                     # create the new vaule for the day
                     statistics_data[text] = {
@@ -90,6 +98,7 @@ class WarframeStatisticsPipeline(object):
                         "avg_value": avg_value,
                         "accuracy_value": accuracy_value
                     }
+
 
 
                     # reset the array --- delete all in array
@@ -144,6 +153,7 @@ class WarframeStatisticsPipeline(object):
                         }
                     }
                 )
+
 
             else:
                 # same day -- just insert data
