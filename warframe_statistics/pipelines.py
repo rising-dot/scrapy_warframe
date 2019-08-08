@@ -91,13 +91,13 @@ class WarframeStatisticsPipeline(object):
 
 
 
-                    # create the new vaule for the day
-                    statistics_data[text] = {
-                        "max_value": max_value,
-                        "min_value": min_value,
-                        "avg_value": avg_value,
-                        "accuracy_value": accuracy_value
-                    }
+                        # create the new vaule for the day
+                        statistics_data[text] = {
+                            "max_value": max_value,
+                            "min_value": min_value,
+                            "avg_value": avg_value,
+                            "accuracy_value": accuracy_value
+                        }
 
 
 
@@ -117,18 +117,18 @@ class WarframeStatisticsPipeline(object):
 
 
 
-                # now insert it into the statistics_list
-                self.db[self.collection].update_one(
-                    {"item_name": item.get("item_name")},
-                    {
-                        "$push": {
-                            "statistics_list": {
-                                "datetime": str(date.date()),
-                                "data": statistics_data
+                    # now insert it into the statistics_list
+                    self.db[self.collection].update_one(
+                        {"item_name": item.get("item_name")},
+                        {
+                            "$push": {
+                                "statistics_list": {
+                                    "datetime": str(date.date()),
+                                    "data": statistics_data
+                                }
                             }
                         }
-                    }
-                )
+                    )
 
                 # how many days do we want ?
                 self.db[self.collection].update_one(
