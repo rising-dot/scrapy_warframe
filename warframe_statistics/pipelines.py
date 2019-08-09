@@ -85,7 +85,7 @@ class WarframeStatisticsPipeline(object):
 
                         max_value = max(get_yes.get(text).get("max_value"))
                         min_value = min(get_yes.get(text).get("min_value"))
-                        avg_value = sum(get_yes.get(text).get("avg_value")) / len(item.get(text).get("avg_value")) #calculate the average of average
+                        avg_value = sum(get_yes.get(text).get("avg_value")) / len(get_yes.get(text).get("avg_value")) #calculate the average of average
 
                         accuracy_value = str(round(((sum(get_yes.get(text).get("accuracy_value")) / 480) * 100), 2)) + "%"
 
