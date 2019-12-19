@@ -54,7 +54,6 @@ if __name__ == '__main__':
     scheduler.add_job(send_request, 'cron', day_of_week='mon-sun', hour=22, minute=30, jitter=60)
     scheduler.add_job(send_request, 'cron', day_of_week='mon-sun', hour=23, minute=30, jitter=60)
 
-    scheduler.add_job(send_request, 'cron', day_of_week='mon-sun', hour=23, minute=57, jitter=60)
 
 
 
