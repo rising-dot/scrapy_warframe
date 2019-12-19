@@ -7,7 +7,7 @@
 
 from pymongo import MongoClient
 from datetime import datetime
-
+import pytz
 
 # this code is for local database
 class WarframeStatisticsPipeline(object):
@@ -31,6 +31,9 @@ class WarframeStatisticsPipeline(object):
     def close_spider(self, spider):
         self.client.close()
 
+########################################################################################################################
+
+
     def process_item(self, item, spider):
 
         if self.db[self.collection].count_documents({"item_name": item.get("item_name")}) == 1:
@@ -41,7 +44,7 @@ class WarframeStatisticsPipeline(object):
                 datebase_date = get_date.get("date")
 
             # today date
-            date = datetime.now()
+            date = datetime.now(pytz.utc)
             present_to_int = int(date.strftime('%Y%m%d'))
 
             # if this is a new day then do this
