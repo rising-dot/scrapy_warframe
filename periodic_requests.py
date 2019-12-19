@@ -24,8 +24,10 @@ if __name__ == '__main__':
 
 
     ##################################      Run every hour       ##################################################
-    scheduler.add_job(send_request, 'cron', day_of_week='mon-sun', hour=0-23, jitter=60)
+    scheduler.add_job(send_request, 'cron', day_of_week='mon-sun', hour='1-23', jitter=60)
     ########################################################################################
+
+
     scheduler.add_job(send_request, 'cron', day_of_week='mon-sun', hour=0, minute=3, jitter=60)
     scheduler.add_job(send_request, 'cron', day_of_week='mon-sun', hour=0, minute=29, jitter=60)
     scheduler.add_job(send_request, 'cron', day_of_week='mon-sun', hour=1, minute=29, jitter=60)
@@ -72,3 +74,27 @@ if __name__ == '__main__':
 # heroku ps:scale clock=1
 
 # heroku logs --tail
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
