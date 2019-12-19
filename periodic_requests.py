@@ -70,3 +70,5 @@ if __name__ == '__main__':
 #
 #
 # heroku ps:scale clock=1
+
+# heroku logs --tail
