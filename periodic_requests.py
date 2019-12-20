@@ -4,12 +4,26 @@ from twisted.internet import reactor
 
 import time
 import random
-import os
+#import os
 
+
+# def no_sleep():
+#     hostname = "intense-dawn-47768.herokuapp.com"
+#     os.system("ping -n 1 " + hostname)
+#
+#
+# def send_request():
+#     interval_minute = random.randint(0, 180)
+#     time.sleep(interval_minute)
+#
+#     requests.post("https://intense-dawn-47768.herokuapp.com/schedule.json", data={
+#         'project': 'default',
+#         'spider': 'statistics'
+#     })
+###################################################################################
 
 def no_sleep():
-    hostname = "intense-dawn-47768.herokuapp.com"
-    os.system("ping -n 1 " + hostname)
+    requests.get("https://intense-dawn-47768.herokuapp.com")
 
 
 def send_request():
@@ -20,9 +34,6 @@ def send_request():
         'project': 'default',
         'spider': 'statistics'
     })
-###################################################################################
-
-
 
 
 if __name__ == '__main__':
