@@ -33,9 +33,7 @@ if __name__ == '__main__':
     scheduler.add_job(no_sleep, 'interval', minutes=20)
 
     scheduler.add_job(send_request, 'cron', day_of_week='mon-sun', hour='0-23')
-    #######################################################################################
-
-
+    ######################################################################################
 
     scheduler.add_job(send_request, 'cron', day_of_week='mon-sun', hour=0, minute=27)
     scheduler.add_job(send_request, 'cron', day_of_week='mon-sun', hour=1, minute=27)
