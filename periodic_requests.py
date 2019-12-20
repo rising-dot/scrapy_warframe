@@ -12,7 +12,6 @@ def no_sleep():
     os.system("ping -n 1 " + hostname)
 
 
-
 def send_request():
     interval_minute = random.randint(0, 180)
     time.sleep(interval_minute)
